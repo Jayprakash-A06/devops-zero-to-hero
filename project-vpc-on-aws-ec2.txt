@@ -1,0 +1,64 @@
+Setting Up and Launching a Simple HTTP Server on an EC2 Instance within an AWS VPC
+
+The following steps outline how to set up and launch a simple HTTP server on an EC2 instance within a custom AWS VPC, ensuring it is accessible over the internet.
+
+🔹 Step 1: Create a VPC
+
+1️⃣ Go to the AWS Console → Open the VPC Dashboard.
+2️⃣ Click "Create VPC" and choose the default settings.
+3️⃣ Provide a VPC name (e.g., MyVPC) and ensure an IPv4 CIDR block (e.g., 10.0.0.0/16) is assigned.
+4️⃣ Click "Create" to finalize the VPC setup.
+
+🔹 Step 2: Create an EC2 Instance and Configure Networking
+
+1️⃣ Navigate to the EC2 Dashboard → Click "Launch Instance".
+2️⃣ Choose an Amazon Machine Image (AMI), such as Ubuntu 22.04 LTS.
+3️⃣ Select an Instance Type (e.g., t2.micro for Free Tier eligibility).
+4️⃣ In the "Network Settings", select the VPC created in Step 1 (do not use the default VPC).
+5️⃣ Assign the instance to a Public Subnet and enable Auto-assign Public IP.
+6️⃣ Proceed with storage and security group settings.
+
+🔹 Step 3: Launch the Instance
+
+1️⃣ Select/Create a Key Pair for SSH access.
+2️⃣ Click "Launch Instance" and wait for the instance to start.
+3️⃣ Once running, copy the Public IP for later access.
+
+🔹 Step 4: Update the System Packages
+
+1️⃣ Connect to the instance using SSH:
+
+ssh -i my-key.pem ubuntu@<EC2-Public-IP>
+
+2️⃣ Update the package list and upgrade installed packages:
+
+sudo apt update -y && sudo apt upgrade -y
+
+🔹 Step 5: Launch the HTTP Server via Python
+
+1️⃣ Navigate to the home directory or any desired folder:
+
+cd ~
+
+2️⃣ Run a simple HTTP server using Python:
+
+python3 -m http.server 8000
+
+3️⃣ The server will start, listening on port 8000.
+🔹 Step 6: Configure Security Group to Allow HTTP Traffic on Port 8000
+
+1️⃣ Go to the EC2 Dashboard → Select your instance.
+2️⃣ Click on "Security", then go to "Security Groups".
+3️⃣ Under Inbound Rules, click "Edit inbound rules" → Click "Add Rule".
+4️⃣ Set the following:
+
+    Type: Custom TCP
+    Port Range: 8000
+    Source: 0.0.0.0/0 (or restrict to your IP for security).
+    5️⃣ Click "Save Rules".
+
+🔹 Step 7: Access the HTTP Server from a Browser
+
+1️⃣ Open a web browser and enter:
+
+http://<EC2-Public-IP>:8000

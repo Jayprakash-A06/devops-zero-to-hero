@@ -1,0 +1,98 @@
+Step 1: install the git on a local machine
+
+    once installtion complete successfully follow below command to create file and push to Github
+
+
+🔹 Step 2: Authenticate with GitHub
+
+Before creating a repository, you need to authenticate GitHub CLI:
+
+----             gh auth login
+
+    Follow the prompts to log in with GitHub.
+    Choose HTTPS or SSH (SSH is recommended for security).
+
+🔹 Step 3: Create a New GitHub Repository
+
+Now, create a new repository using:
+
+------------    gh repo create my-new-repo --public --clone
+
+Explanation:
+
+    my-new-repo → Replace with your repository name.
+    --public → Creates a public repository (use --private for a private one).
+    --clone → Automatically clones the repository to your local machine.
+
+💡 After running this, GitHub will create the repository and clone it locally.
+ 
+ Step 4: Navigate to the Cloned Repository
+
+----      cd my-new-repo
+
+Run:
+
+ls -a
+
+    You should see a .git directory, which confirms it’s a Git repository.
+
+🔹 Step 5: Create a New File
+
+    Create a README file:
+
+------       echo "# My New Repository" > README.md
+
+Verify the file is created:
+
+    ls
+
+    You should see README.md.
+
+🔹 Step 6: Add and Commit the File
+
+    Check the Git status:
+
+--------           git status
+
+    You should see README.md as an untracked file.
+
+Add the file to Git:
+
+------          git add README.md
+
+Commit the file:
+
+------    git commit -m "Initial commit - added README file"
+
+🔹 Step 7: Push the Changes to GitHub
+
+Push the committed changes to GitHub:
+
+---------           git push -u origin main
+
+    This uploads your local changes to GitHub.
+
+🔹 Step 8: Verify on GitHub
+
+    Go to GitHub → Open your repository (https://github.com/your-username/my-new-repo).
+    You should see the README.md file. 🎉
+
+🎯 Summary of All Commands
+
+# Step 1: Authenticate GitHub CLI
+gh auth login
+
+# Step 2: Create a new GitHub repository and clone it locally
+gh repo create my-new-repo --public --clone
+
+# Step 3: Navigate to the repository
+cd my-new-repo
+
+# Step 4: Create a README file
+echo "# My New Repository" > README.md
+
+# Step 5: Add and commit the file
+git add README.md
+git commit -m "Initial commit - added README file"
+
+# Step 6: Push to GitHub

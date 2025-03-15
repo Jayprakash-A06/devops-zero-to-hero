@@ -1,0 +1,61 @@
+### **Solution for GitHub Error: `! [rejected] main -> main (non-fast-forward)`**  
+
+This error happens when your local branch is **behind** the remote branch on GitHub.  
+It means **someone else (or you from another device) has pushed new commits** to GitHub, and Git won't let you push until you sync your changes.
+
+---
+
+## **Steps to Fix the Error**
+### **1. Fetch the Latest Changes from GitHub**
+Run:
+```sh
+git fetch origin
+```
+This downloads the latest commits **without merging** them.
+
+---
+
+### **2. Pull the Latest Changes into Your Local Branch**
+Run:
+```sh
+git pull origin main --rebase
+```
+This will:
+✅ **Merge remote changes** with your local code.  
+✅ **Keep your commits on top** (avoids unnecessary merge commits).  
+
+If you get conflicts, Git will ask you to **resolve them manually** before proceeding.
+
+---
+
+### **3. Push Your Changes Again**
+Once you've successfully pulled the latest changes, push your code:
+```sh
+git push origin main
+```
+This should now work **without errors**.
+
+---
+
+## **Alternative: Force Push (Only If Necessary)**
+If you are **sure** you want to overwrite remote changes (⚠️ **Dangerous!**), you can **force push**:
+```sh
+git push --force origin main
+```
+⚠️ **Warning**: This **overwrites** the remote branch and may **delete** other people's changes.
+
+---
+
+## **Summary**
+| **Step** | **Command** | **Why?** |
+|----------|------------|-----------|
+| Fetch updates | `git fetch origin` | Download the latest changes from GitHub |
+| Merge changes | `git pull origin main --rebase` | Sync your branch with GitHub |
+| Push updates | `git push origin main` | Upload your changes to GitHub |
+| Force push (if necessary) | `git push --force origin main` | Overwrites remote changes (⚠️ Risky!) |
+
+---
+
+:wq
+
+

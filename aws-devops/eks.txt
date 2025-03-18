@@ -1,0 +1,124 @@
+🔹 Amazon EKS (Elastic Kubernetes Service) – Key Components & Features
+🔹 What is Amazon EKS?
+
+Amazon EKS (Elastic Kubernetes Service) is a fully managed Kubernetes service that allows you to run Kubernetes clusters on AWS without managing the control plane. It provides scalability, security, and high availability for containerized applications.
+
+EKS simplifies Kubernetes operations by automating control plane management, security, and scaling while integrating with AWS services like IAM, VPC, and CloudWatch.
+1️⃣ Key Components of Amazon EKS
+
+EKS is built on Kubernetes architecture, and its core components include:
+🔹 1. Control Plane (Managed by AWS)
+
+    AWS automatically manages and scales the control plane across multiple Availability Zones.
+
+    Handles API requests, scheduling, and cluster state management.
+
+    Consists of etcd (data store), Kubernetes API server, scheduler, and controller manager.
+
+🔹 2. Worker Nodes (Managed by You)
+
+    EC2 instances or AWS Fargate run the actual containers.
+
+    Nodes are grouped into node groups, which are auto-scaled based on demand.
+
+🔹 3. EKS Add-ons
+
+    Pre-configured Kubernetes components (CoreDNS, VPC CNI, kube-proxy).
+
+    Can install additional add-ons like AWS Load Balancer Controller, Cluster Autoscaler, etc..
+
+🔹 4. Kubernetes API
+
+    The Kubernetes API server manages cluster interactions.
+
+    Developers interact with it via kubectl or AWS SDKs.
+
+🔹 5. AWS VPC (Networking)
+
+    EKS runs inside an Amazon VPC.
+
+    Uses AWS CNI (Container Network Interface) for pod-to-pod communication.
+
+    Supports private and public subnets.
+
+🔹 6. IAM (Identity and Access Management)
+
+    Uses IAM roles for Kubernetes service accounts.
+
+    Granular access control using RBAC (Role-Based Access Control).
+
+🔹 7. AWS Load Balancers (Networking)
+
+    Supports ALB (Application Load Balancer) and NLB (Network Load Balancer) for external traffic.
+
+    Automatically provisions load balancers based on Kubernetes Ingress.
+
+🔹 8. Storage (EBS, EFS, S3)
+
+    Supports Amazon EBS for block storage.
+
+    Amazon EFS for persistent shared storage across multiple pods.
+
+    Can use S3 for object storage.
+
+🔹 9. Logging & Monitoring
+
+    Uses CloudWatch, AWS X-Ray, Prometheus, Grafana for monitoring.
+
+    Can enable AWS Audit Logs for security insights.
+
+2️⃣ Key Features of Amazon EKS
+Feature	Description
+Managed Kubernetes Control Plane	AWS handles Kubernetes control plane upgrades, availability, and scaling.
+Multi-Availability Zone (AZ) Deployment	The control plane is highly available across multiple AZs, ensuring reliability.
+Integration with AWS Services	Works with IAM, VPC, CloudWatch, ALB, EBS, S3, etc.
+Security & IAM Integration	IAM authentication & RBAC support for granular access control.
+Networking with AWS VPC CNI	Ensures fast, native networking between Kubernetes pods and AWS services.
+Supports EC2 & Fargate	Can run workloads on EC2 instances or serverless AWS Fargate.
+Automatic Scaling	Works with Cluster Autoscaler to add/remove nodes dynamically.
+Observability & Logging	Uses CloudWatch, Prometheus, Grafana, FluentBit for logs and metrics.
+Supports Kubernetes Ecosystem	Can run Helm charts, Kustomize, Kubectl, and other Kubernetes tools.
+Multi-Cluster & Hybrid Deployments	Can deploy across AWS, on-premises, and hybrid environments with EKS Anywhere.
+Cost Optimization	Supports Spot Instances, Auto Scaling, and Fargate to reduce costs.
+3️⃣ How Amazon EKS Works? (Flow)
+
+1️⃣ Create an EKS Cluster → AWS sets up a Kubernetes control plane.
+2️⃣ Launch Worker Nodes (EC2 or Fargate) → Nodes join the cluster.
+3️⃣ Deploy Applications using kubectl or Helm charts.
+4️⃣ Manage Networking & Storage → Uses AWS Load Balancers, EBS, EFS, S3.
+5️⃣ Monitor & Scale → Uses CloudWatch, Auto Scaling, and Cluster Autoscaler.
+4️⃣ When to Use Amazon EKS?
+
+✅ Use Amazon EKS if:
+✔️ You need Kubernetes for container orchestration.
+✔️ You want high availability and scalability for your workloads.
+✔️ You need multi-cloud or hybrid cloud support.
+✔️ You want deep AWS integration (IAM, CloudWatch, VPC).
+✔️ Your team has Kubernetes expertise.
+
+❌ Don't use EKS if:
+❌ You don't need Kubernetes (use ECS instead for simpler workloads).
+❌ You want a fully serverless experience (Use ECS Fargate).
+❌ Your workloads are small and can be run on Docker or AWS Lambda.
+5️⃣ ECS vs. EKS: Which One to Choose?
+Feature	EKS (Elastic Kubernetes Service)	ECS (Elastic Container Service)
+Orchestration	Kubernetes	AWS-native
+Complexity	More complex	Easier
+Multi-Cloud	Yes	No (AWS-only)
+Scaling	Uses Kubernetes Cluster Autoscaler	ECS Auto Scaling
+Node Management	Uses EC2, Fargate	Uses EC2, Fargate
+Networking	AWS VPC CNI, Kubernetes Ingress	AWS VPC, ELB
+Best For	Kubernetes users, multi-cloud apps	AWS-native, simpler apps
+
+🚀 Use EKS if you need Kubernetes. Use ECS if you want a simpler AWS-native solution.
+6️⃣ Summary
+
+    EKS is a fully managed Kubernetes service that runs containerized applications on AWS.
+
+    AWS manages the Kubernetes control plane while you manage worker nodes.
+
+    Deep AWS integration with IAM, VPC, ALB, EBS, S3.
+
+    Supports EC2, Fargate, Auto Scaling, Load Balancers, and Multi-Cluster deployments.
+
+    Ideal for Kubernetes workloads but ECS is better for simpler AWS-native apps.

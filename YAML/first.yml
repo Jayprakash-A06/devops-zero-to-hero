@@ -1,0 +1,14 @@
+# Hi I'm Jay this was my first YAML code
+
+About_Me: #[INDENTATION  mean space ]
+  Name : Jay #Key: Value
+  Age : 25   # key : Integer
+  Working : IT Engineer
+  skill :  # list - [hypen]
+    - Python
+    - Aws
+    - GITHUB
+    - Linux
+
+    # we can save file with exentention of .yml / .yaml
+    

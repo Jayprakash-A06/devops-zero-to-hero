@@ -1,0 +1,225 @@
+User and Group Management in Linux - Complete Notes
+
+Linux is a multi-user operating system, meaning multiple users can access and use system resources simultaneously. Effective user and group management is vital for maintaining system security, resource control, and organization.
+
+📄 Types of Users
+
+Root User:
+
+Superuser with unrestricted system access.
+
+Home directory: /root
+
+Can create, modify, or delete any file or user.
+
+Regular Users:
+
+Created by root or system admins.
+
+Have limited permissions.
+
+Home directory: /home/username
+
+System Users (Optional Note):
+
+Used for system services (e.g., www-data, nobody).
+
+Typically have no login access.
+
+🔧 Creating and Managing Users
+
+Create a user:
+
+sudo useradd john
+
+Set user password:
+
+sudo passwd john
+
+User Configuration Files:
+
+/etc/passwd: Stores user account info (username, UID, home dir, shell).
+
+/etc/shadow: Stores encrypted passwords and account expiration info.
+
+/etc/group: Stores group info and group memberships.
+
+Example /etc/passwd line:
+
+john:x:1001:1001:John Doe,,,:/home/john:/bin/bash
+
+Example /etc/group line:
+
+developers:x:1002:john
+
+🕥 Groups in Linux
+
+Groups help manage permissions for multiple users.
+
+Each user can be part of multiple groups.
+
+Commands:
+
+Create a group:
+
+sudo groupadd developers
+
+Add user to group:
+
+sudo usermod -aG developers john
+
+View user groups:
+
+groups john
+
+Delete user:
+
+sudo deluser john
+
+Delete group:
+
+sudo delgroup developers
+
+🔐 Permissions and Ownership
+
+Linux uses a permission model based on:
+
+Owner (user)
+
+Group
+
+Others (everyone else)
+
+Each can have:
+
+r - read
+
+w - write
+
+x - execute
+
+Example:
+
+-rwxr-xr--
+
+- = regular file
+
+rwx = owner has read, write, execute
+
+r-x = group has read, execute
+
+r-- = others have read only
+
+Change ownership:
+
+sudo chown user:group filename
+
+Change permissions:
+
+Symbolic:
+
+chmod u+rwx filename      # Add rwx for user
+chmod g-w filename        # Remove write from group
+chmod o=rx filename       # Set read and execute for others
+
+Numeric:
+
+r=4, w=2, x=1
+
+Add values to set permissions
+
+chmod 755 filename   # rwxr-xr-x
+chmod 644 filename   # rw-r--r--
+
+📝 Scenario Examples
+
+Scenario 1: Create a User and Group
+
+sudo useradd john
+sudo passwd john
+sudo groupadd developers
+sudo usermod -aG developers john
+groups john
+
+Scenario 2: File Ownership and Permissions
+
+touch example.txt
+sudo chown john:developers example.txt
+chmod 754 example.txt
+ls -l example.txt
+
+Output:
+
+-rwxr-xr-- 1 john developers 0 Aug 6 10:00 example.txt
+
+Detailed Example:
+
+sudo useradd alice
+sudo passwd alice
+sudo groupadd engineers
+sudo usermod -aG engineers alice
+groups alice
+touch project.txt
+sudo chown alice:engineers project.txt
+chmod 664 project.txt
+ls -l project.txt
+
+Output:
+
+-rw-rw-r-- 1 alice engineers 0 Aug 6 10:00 project.txt
+
+✨ Bonus: Useful Commands Summary
+
+Command
+
+Description
+
+useradd
+
+Add a new user
+
+passwd
+
+Set or change user password
+
+usermod
+
+Modify user (e.g. add to group)
+
+groupadd
+
+Add a new group
+
+groups
+
+Show groups a user belongs to
+
+deluser
+
+Delete a user
+
+delgroup
+
+Delete a group
+
+chown
+
+Change file owner and group
+
+chmod
+
+Change file permissions
+
+ls -l
+
+View detailed file permissions
+
+✅ Summary
+
+Linux provides a powerful user and group system to control access and ensure security.
+
+Files and directories can have fine-grained permissions set for users and groups.
+
+Understanding user accounts, groups, permissions, and key commands is essential for any system administrator or DevOps engineer.
+
+Make sure to regularly audit users, remove unused accounts, and follow the principle of least privilege for secure system manageme
